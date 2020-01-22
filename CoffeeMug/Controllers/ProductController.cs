@@ -74,9 +74,13 @@ namespace CoffeeMug.Api.Controllers
             {
                 await _updateHandler.HandleAsync(command);
             }
-            catch (ArgumentException ex) 
+            catch (ArgumentException ex)
             {
-                return BadRequest(ex.Message); 
+                return NotFound(ex.Message);
+            }
+            catch (ModelException ex) 
+            {
+                return BadRequest(ex.Message);
             }
 
             return Ok();
